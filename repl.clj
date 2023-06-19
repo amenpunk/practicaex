@@ -43,18 +43,40 @@
     (println "Email" (:email usuario))))
 
 (defn salir []
-  println "Saliendo del programa"
+  ( println "Saliendo del programa")
   (System/exit 0))
 
 (defn crear[]
-  (println "Ingrese primero el nombre yluego el email del usuario")
+  (println "Ingrese primero el nombre y luego el email del usuario")
   (let [nombre(read-line) email (read-line)]
       (crear-usuario nombre email)
       (flush)
     )
   )
 
-; (def actualizar)
+(defn actualizar[]
+  (println "Ingrese el id del usuario a actualizar")
+  (let [id (Integer/parseInt (read-line)) nombre (read-line) email(read-line)  ]
+    (actualizar-usuario id nombre email)
+    (flush)
+  )
+)
+
+(defn leer-usuario-ind[]
+  (println "Ingrese el id del usuario a consultar:")
+  ( let [id (Integer/parseInt (read-line))]
+    (consultar-por-id id)
+    (flush)
+  )
+)
+
+(defn eliminar[]
+  (println "Ingrese el id del usuario a eliminar")
+  (let [id (Integer/parseInt (read-line))]
+    (eliminar-usuario id)
+    (flush)
+  )
+)
 
 ( defn -main[]
   (loop []
@@ -71,10 +93,10 @@
     (cond 
       (= opcion "0") (salir)
       (= opcion "1") (crear)
-      ; (= opcion "2") (actualizar-usuario)
-      ; (= opcion "3") (leer-usuario)
+      (= opcion "2") (actualizar)
+      (= opcion "3") (leer-usuario-ind)
       (= opcion "4") (leer-usuarios)
-      ; (= opcion "5") (eliminar-usuario)
+      (= opcion "5") (eliminar)
       :else (println "Opcion no valida")))
      (recur)
      )
