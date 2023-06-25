@@ -11,10 +11,6 @@
 (defn leer-usuario [id]
   (@usuarios id))
 
-(crear-usuario "Juan" "juan@gmail.com")
-(crear-usuario "Ming" "teest@gmail.com")
-(leer-usuario 0)
-
 (defn consultar-por-id [id]
   (let [usuario (leer-usuario id)]
     (if usuario
