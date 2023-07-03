@@ -41,50 +41,91 @@ object Libros {
     }
   }
 
-  // // TODO: Implementar las funciones actualizarLibro y eliminarLibro
-  //
-  agregarLibro(1,"Libro 1","Autor 1",1943)
-  agregarLibro(2,"Libro 2","Autor 2",1999)
-  agregarLibro(3,"Libro 3","Autor 4",2000)
-  agregarLibro(4,"El principito","Antoine de Saint-Exupéry",1943)
-  //
-  // actualizarLibro(4,"La principita","Antoine de Saint-Exupéry",1552)
-  // eliminarLibro(2)
-  //
-  // listarLibros()
-
- //
   def mostrarMenu(): Unit = {
     println("1. Agregar libro")
-    println("2. Buscar libro")
-    println("3. Actualizar libro")
-    println("4. Eliminar libro")
-    println("5. Listar libros")
-    println("6. Salir")
+    println("2. Actualizar libro")
+    println("3. Eliminar libro")
+    println("4. Listar libros")
+    println("5. Salir")
   }
- //
- //
- //
+
+  def existeLibro(id: Int): Boolean = {
+    buscarLibro(id) match {
+      case Some(libro) => true
+      case None => false
+    }
+  }
+
   def main(args: Array[String]): Unit = {
     var opcion = 0
-    while (opcion != 4) {
-      mostrarMenu()
+    while (opcion != 5) {
       opcion = StdIn.readInt()
-      // seleccionarOpcion(opcion)
+      if(opcion == 5) System.exit(0)
+      mostrarMenu()
+      seleccionarOpcion(opcion)
     }
     // listarLibros()
   }
  //
- //  def seleccionarOpcion(opcion: Int): Unit = {
- //    opcion match {
- //      case 1 => println("Has seleccionado la Opción 1")
- //      case 2 => println("Has seleccionado la Opción 2")
- //      case 3 => println("Has seleccionado la Opción 3")
- //      case 4 => println("Saliendo del programa...")
- //      case _ => println("Opción inválida")
- //    }
- //    // println()
- //  }
+  def seleccionarOpcion(opcion: Int): Unit = {
+    opcion match {
+      case 1 => {
+        var id =0
+        var publicacion = 0
+        var titulo=""
+        var autor = ""
+
+        println("Ingrese el id del libro")
+        id = StdIn.readInt()
+        println("Ingrese autor")
+        autor = StdIn.readLine()
+        println("titulo")
+        titulo = StdIn.readLine()
+        println("Ingrese ano de publicacion")
+        id = StdIn.readInt()
+        agregarLibro(id, titulo, autor, publicacion)
+      }
+      case 2 => {
+        var id =0
+        var publicacion = 0
+        var titulo=""
+        var autor = ""
+
+        println("Ingrese el id del libro")
+        id = StdIn.readInt()
+        var existe = existeLibro(id)
+        if(!existe){
+          println("El libro no existe")
+          return
+        }
+
+        println("Ingrese autor")
+        autor = StdIn.readLine()
+        println("titulo")
+        titulo = StdIn.readLine()
+        println("Ingrese ano de publicacion")
+        id = StdIn.readInt()
+        actualizarLibro(id, titulo, autor, publicacion)
+        print("Libro actualizado")
+
+      }
+      case 3 => {
+        var id = 0;
+        id = StdIn.readInt()
+        var existe = existeLibro(id)
+        if(!existe){
+          println("El libro no existe")
+          return
+        }
+        eliminarLibro(id)
+        print("Libro elmiminado")
+      }
+      case 4 => listarLibros()
+      case 5 => System.exit(0)
+      case _ => println("Opción inválida")
+    }
+    // println()
+  }
 
 
 
