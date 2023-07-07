@@ -59,14 +59,13 @@ object Libros {
   def main(args: Array[String]): Unit = {
     var opcion = 0
     while (opcion != 5) {
+      mostrarMenu()
       opcion = StdIn.readInt()
       if(opcion == 5) System.exit(0)
-      mostrarMenu()
       seleccionarOpcion(opcion)
     }
-    // listarLibros()
   }
- //
+
   def seleccionarOpcion(opcion: Int): Unit = {
     opcion match {
       case 1 => {
@@ -93,11 +92,6 @@ object Libros {
 
         println("Ingrese el id del libro")
         id = StdIn.readInt()
-        var existe = existeLibro(id)
-        if(!existe){
-          println("El libro no existe")
-          return
-        }
 
         println("Ingrese autor")
         autor = StdIn.readLine()
@@ -111,12 +105,8 @@ object Libros {
       }
       case 3 => {
         var id = 0;
+        printf("Ingrese el id del libro a eliminar")
         id = StdIn.readInt()
-        var existe = existeLibro(id)
-        if(!existe){
-          println("El libro no existe")
-          return
-        }
         eliminarLibro(id)
         print("Libro elmiminado")
       }
